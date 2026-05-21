@@ -1,1 +1,1 @@
-mod producto_repository;
+pub mod producto_repository;

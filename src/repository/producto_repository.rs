@@ -68,4 +68,15 @@ impl ProductoRepository{
 
         Ok(())
     }
+
+    pub async fn obtener_producto_por_id(&self, id: i32) -> sqlx::Result<Producto>{
+        let producto = sqlx::query_as::<_, Producto>(
+            "SELECT id_producto, nombre, precio, stock, id_categoria, id_proveedor FROM Productos WHERE id_producto = $1"
+        )
+            .bind(id)
+            .fetch_one(&self.pool)
+            .await?;
+
+        Ok(producto)
+    }
 }
