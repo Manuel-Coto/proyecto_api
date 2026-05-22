@@ -34,7 +34,11 @@ pub async fn crear_producto(
     let repo = ProductoRepository::new(pool);
     match repo.crear_producto(nuevo_producto).await {
         Ok(producto) => Ok((StatusCode::CREATED, Json(producto))),
-        Err(_) => Err(StatusCode::BAD_REQUEST),
+        //Err(_) => Err(StatusCode::BAD_REQUEST),
+        Err(e) => {
+            eprintln!("Error al crear producto: {:?}", e);
+            Err(StatusCode::BAD_REQUEST)
+        },
     }
 }
 

@@ -3,6 +3,7 @@ use sqlx::FromRow;
 
 #[derive(Debug, Clone, Serialize, Deserialize, FromRow, PartialEq)]
 pub struct Producto{
+    #[sqlx(rename = "id_producto")]
     pub id: i32,
     pub nombre: String,
     pub precio: f64,
