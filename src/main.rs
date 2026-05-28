@@ -9,6 +9,7 @@ mod repository;
 use controller::producto_controller::producto_router;
 use controller::categoria_controller::categoria_router;
 use controller::proveedores_controller::proveedores_router;
+use controller::venta_controller::venta_router;
 use config::config::crear_pool;
 
 #[tokio::main]
@@ -35,5 +36,6 @@ fn unificar_routers(pool: sqlx::PgPool) -> axum::Router {
     let router1 = producto_router(pool.clone());
     let router2 = categoria_router(pool.clone());
     let router3 = proveedores_router(pool.clone());
-    router1.merge(router2).merge(router3)   
+    let router4 = venta_router(pool.clone());
+    router1.merge(router2).merge(router3).merge(router4)
 }
