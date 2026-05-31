@@ -10,10 +10,10 @@ use crate::service::cliente_service::{
 
 pub fn cliente_router(pool: PgPool) -> Router {
     Router::new()
-        .route("/api/clientes", get(obtener_todos))
-        .route("/api/clientes/{id}", get(obtener_por_id))
-        .route("/api/clientes", post(crear_cliente))
-        .route("/api/clientes/{id}", put(actualizar_cliente))
-        .route("/api/clientes/{id}", delete(eliminar_cliente))
+        .route("/clientes", get(obtener_todos))
+        .route("/clientes/{id}", get(obtener_por_id))
+        .route("/clientes", post(crear_cliente))
+        .route("/clientes/{id}", put(actualizar_cliente))
+        .route("/clientes/{id}", delete(eliminar_cliente))
         .with_state(pool)
 }
